@@ -1,0 +1,54 @@
+{% extends "frame.html" %}
+{% block header %}French Fries Order{% endblock %}
+{% block title %}French Fries Order{% endblock %}
+
+{% block content %}
+{% if orderid and budget and spent %}
+<p id="order-id">Order ID: {{ orderid }}</p>
+<p id="budget">Budget: {{ budget }}</p>
+<p id="spent">Spent: {{ spent }}</p>
+
+<form action="{{ url_for('order3_french_fries') }}" method="POST">
+    <input type="hidden" name="orderid" value="{{ orderid }}">
+    <input type="hidden" name="budget" value="{{ budget }}">
+    <input type="hidden" name="spent" value="{{ spent }}">
+
+    <label for="french_fries_type">French fries type:</label>
+    <select name="french_fries_type" id="french_fries_type">
+        <option value="Standard cut">Standard cut</option>
+        <option value="Curly fries">Curly fries</option>
+        <option value="Chili fries">Chili fries</option>
+        <option value="Sweet potato fries">Sweet potato fries</option>
+    </select><br>
+
+    <label for="french_fries_size">Size:</label>
+    <select name="french_fries_size" id="french_fries_size">
+        <option value="Small"> Small </option>
+        <option value="Medium"> Medium</option>
+        <option value="Large"> Large</option>
+        <option value="Extra Large">Extra Large </option>
+    </select><br>
+
+    <label for="number_of_french_fries"> No. of French Fries Boxes:</label>
+    <select name="number_of_french_fries" id="number_of_french_fries">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select><br>
+
+    <button type="submit" name="action" value="next">Next</button>
+    <button type="submit" name="action" value="extra_frenchfries">Order Extra French Fries </button>
+    <button type="submit" name="action" value="back">Back without saving</button>
+</form>
+
+<h1> Prices Per Box (based on size):</h1>
+<h5> Small: 20 kr. </h5>
+<h5> Medium: 30 kr. </h5>
+<h5> Large: 40 kr. </h5>
+<h5> Extra Large: 50 kr. </h5>
+{% else %}
+<p>MANGLER orderid, budget og/eller spent.</p>
+{% endif %}
+
+{% endblock %}

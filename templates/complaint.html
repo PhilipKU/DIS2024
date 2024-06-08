@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Submit a Complaint</title>
+</head>
+
+<h1>Submit a Complaint</h1>
+<h2> Please add an phone number in the content of the complaint so that we may contact you. </h2>
+<h3> The phone number must be 8 digits long and must be separated by other words or signs by at least a single space
+    before and after the phone number.</h3>
+
+<form action="{{ url_for('submit_complaint') }}" method="POST">
+    <input type="hidden" name="orderid" value="{{ orderid }}">
+    <textarea name="complaint_text" rows="4" cols="50" placeholder="Write your complaint here..."></textarea>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+</html>

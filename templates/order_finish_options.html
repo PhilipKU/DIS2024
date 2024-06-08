@@ -1,0 +1,18 @@
+{% if orderid and spent %}
+<h1> Please wait in the queue to receive your order </h1>
+<p id="order-id">Your order is {{ orderid }}</p>
+<p id="spent">Your purchase sum was {{ spent }}</p>
+<p> The purchase sum has been subtracted from your budget </p>
+
+{% endif %}
+<h1>What would you like to do next?</h1>
+
+<form action="{{ url_for('restart') }}" method="POST">
+    <input type="hidden" name="orderid" value="{{ orderid }}">
+    <input type="hidden" name="spent" value="{{ spent }}">
+    <button type="submit">Restart</button>
+</form>
+
+<form action="{{ url_for('complaint') }}" method="GET">
+    <button type="submit">Complaint</button>
+</form>

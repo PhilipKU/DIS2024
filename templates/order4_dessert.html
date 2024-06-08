@@ -1,0 +1,55 @@
+{% extends "frame.html" %}
+{% block header %}Dessert{% endblock %}
+{% block title %}Dessert{% endblock %}
+{% block content %}
+{% if orderid and budget and spent %}
+<p id="order-id">Order ID: {{ orderid }}</p>
+<p id="budget">Budget: {{ budget }}</p>
+<p id="spent">Spent: {{ spent }}</p>
+
+<form action="{{ url_for('order4_dessert') }}" method="POST">
+    <input type="hidden" name="orderid" value="{{ orderid }}">
+    <input type="hidden" name="budget" value="{{ budget }}">
+    <input type="hidden" name="spent" value="{{ spent }}">
+
+    <label for="dessert_type">Dessert Type:</label>
+    <select name="dessert_type" id="dessert_type">
+        <option value="Soft ice">Soft ice</option>
+        <option value="Milkshake">Milkshake</option>
+        <option value="Pancake stack">Pancake stack</option>
+        <option value="Waffles">Waffles</option>
+    </select><br>
+
+    <label for="dessert_size">Size:</label>
+    <select name="dessert_size" id="dessert_size">
+        <option value="Small"> Small </option>
+        <option value="Medium"> Medium</option>
+        <option value="Large"> Large</option>
+        <option value="Extra Large">Extra Large </option>
+    </select><br>
+
+    <label for="number_of_desserts"> No. of Dessert Servings:</label>
+    <select name="number_of_desserts" id="number_of_desserts">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+    </select><br>
+
+    <button type="submit" name="action" value="next">Next</button>
+    <button type="submit" name="action" value="extra_dessert">Order Extra Desserts</button>
+    <button type="submit" name="action" value="back">Back Without Saving</button>
+</form>
+<h1> Prices Per Dessert Serving(small size*):</h1>
+<h5> Softice: 20 kr. </h5>
+<h5> Milkshake: 25 kr. </h5>
+<h5> Pancake Stack: 30 kr. </h5>
+<h5> Waffles: 35 kr. </h5>
+<h6> Medium size, large size and extra large size cost 50%, 100% and 150% more!</h6>
+{% else %}
+<p>MANGLER orderid, budget og/eller spent.</p>
+{% endif %}
+
+{% endblock %}

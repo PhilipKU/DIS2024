@@ -1,0 +1,60 @@
+{% extends "frame.html" %}
+{% block header %}Burger Order{% endblock %}
+{% block title %}Burger Order{% endblock %}
+{% block content %}
+{% if orderid and budget %}
+<p id="order-id">Order ID: {{ orderid }}</p>
+<p id="budget">Budget: {{ budget }}</p>
+{% if spent %}
+<p id="spent">Spent: {{ spent }}</p>
+{% else %}
+<p id="spent">Spent: 0</p>
+{% endif %}
+<form action="{{ url_for('order1_burger') }}" method="POST">
+    <input type="hidden" name="orderid" value="{{ orderid }}">
+    <input type="hidden" name="budget" value="{{ budget }}">
+    <input type="hidden" name="spent" value="{{ spent }}">
+
+    <label for="burger_type">Burger</label>
+    <select name="burger_type" id="burger_type">
+        <option value="Classical style">Classical style</option>
+        <option value="Cheese Burger">Regular Cheese Burger</option>
+        <option value="Goat Cheese">The One With Goat Cheese</option>
+        <option value="Kids Choice">Kids' Choice</option>
+    </select><br>
+
+    <label for="patty_type">Patty</label>
+    <select name="patty_type" id="patty_type">
+        <option value="Beef">Beef</option>
+        <option value="Chicken">Chicken</option>
+        <option value="Fake Meat">Fake Meat (vegan)</option>
+        <option value="Beetroot">Beetroot (vegan)</option>
+    </select><br>
+
+    <label for="bun_type">Bun</label>
+    <select name="bun_type" id="bun_type">
+        <option value="Brioche bun">Brioche</option>
+        <option value="Dark bun">Dark</option>
+        <option value="Gluten Free bun">Gluten Free</option>
+        <option value="Lettuce bun">Iceberg Lettuce Wrap</option>
+    </select><br>
+    <label for="number_of_burgers"> Amount:</label>
+    <select name="number_of_burgers" id="number_of_burgers">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select><br>
+
+    <button type="submit" name="action" value="next">Next</button>
+    <button type="submit" name="action" value="extra_burger">Order Extra Burgers</button>
+</form>
+<h1> Prices:</h1>
+<h5> Classical Style: 30 kr. </h5>
+<h5> Regular Cheese Burger: 35 kr. </h5>
+<h5> The One With Goat Cheese: 45 kr. </h5>
+<h5> Kids Choice: 30 kr. </h5>
+{% else %}
+<p>MANGLER orderid, budget og/eller spent.</p>
+{% endif %}
+{% endblock %}

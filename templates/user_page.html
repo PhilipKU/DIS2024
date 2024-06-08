@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+{% block title %}
+
+<head>
+    <title>User Page</title>
+</head>
+{% endblock %}
+{% block header %}
+<h1>User Page</h1>
+{% endblock %}
+{% block content %}
+{% if userid and budget%}
+<p id="user-id">User ID: {{ userid }}</p>
+<p id="username"></p>
+<p id="budget">Budget: {{ budget }}</p>
+<ul>
+    <li><a href="/order1_burger">Start Order</li>
+</ul>
+{% else %}
+<p>Start order by logging in.</p>
+{% endif %}
+{% endblock %}
+
+</html>

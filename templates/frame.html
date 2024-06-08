@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<h1>{% block header %}Project: Making an Order at a Burger Restaurant{% endblock %} </h1>
+
+<head>
+    <title>{% block title %}Order{% endblock %}</title>
+</head>
+{% block content %}
+
+<body>
+    <h2> Please choose:</h2>
+    <ul>
+        <li><a href="/createaccount">Create Account</a></li>
+        <li><a href="/login">Login</a></li>
+    </ul>
+</body>
+{% endblock %}
+
+</html>

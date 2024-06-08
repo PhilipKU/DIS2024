@@ -1,0 +1,91 @@
+<h1>Final order</h1>
+<h2> Please delete the items from your order you do not want: </h2>
+{% if orderid and budget and spent %}
+<p id="order-id">Order ID: {{ orderid }}</p>
+<p id="budget">Budget: {{ budget }}</p>
+<p id="spent">Spent: {{ spent }}</p>
+
+<form action="{{ url_for('order5_finish') }}" method="POST">
+    <input type="hidden" name="orderid" value="{{ orderid }}">
+    <input type="hidden" name="budget" value="{{ budget }}">
+    <input type="hidden" name="spent" value="{{ spent }}">
+
+    <label for="burgers">Burgers:</label>
+    <select id="burgers" name="delete_id">
+        {% for burger in burgers %}
+        <option value="{{ burger[4] }}">{{ burger[0:3] }} - Price {{burger[6]}}, amount
+            {{burger[7]}}
+        </option>
+        {% endfor %}
+    </select>
+    <button type="submit" name="delete_type" value="burger">Delete Burger Item</button>
+</form>
+
+<form action="{{ url_for('order5_finish') }}" method="POST">
+    <input type="hidden" name="orderid" value="{{ orderid }}">
+    <input type="hidden" name="budget" value="{{ budget }}">
+    <input type="hidden" name="spent" value="{{ spent }}">
+
+    <label for="beverages">Beverages:</label>
+    <select id="beverages" name="delete_id">
+        {% for beverage in beverages %}
+        <option value="{{ beverage[3] }}">{{ beverage[0:2] }} - Price {{beverage[5]}}, amount
+            {{beverage[6]}}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" name="delete_type" value="beverage">Delete Beverage Item</button>
+</form>
+
+<form action="{{ url_for('order5_finish') }}" method="POST">
+    <input type="hidden" name="orderid" value="{{ orderid }}">
+    <input type="hidden" name="budget" value="{{ budget }}">
+    <input type="hidden" name="spent" value="{{ spent }}">
+
+    <label for="french_fries">French Fries:</label>
+    <select id="french_fries" name="delete_id">
+        {% for french_fry in french_fries %}
+        <option value="{{ french_fry[3] }}">{{ french_fry[0:2] }} - Price {{french_fry[5]}}, amount
+            {{french_fry[6]}}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" name="delete_type" value="french_fries">Delete French Fries Item</button>
+</form>
+
+<form action="{{ url_for('order5_finish') }}" method="POST">
+    <input type="hidden" name="orderid" value="{{ orderid }}">
+    <input type="hidden" name="budget" value="{{ budget }}">
+    <input type="hidden" name="spent" value="{{ spent }}">
+
+    <label for="desserts">Desserts:</label>
+    <select id="desserts" name="delete_id">
+        {% for dessert in desserts %}
+        <option value="{{ dessert[3] }}">{{ dessert[0:2] }} - Price {{dessert[5]}}, amount
+            {{dessert[6]}}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" name="delete_type" value="dessert">Delete Dessert Item</button>
+</form>
+
+<form action="{{ url_for('order_finish_options') }}" method="GET">
+    <input type="hidden" name="orderid" value="{{ orderid }}">
+    <input type="hidden" name="budget" value="{{ budget }}">
+    <input type="hidden" name="spent" value="{{ spent }}">
+    <button type="submit">Submit Final Order</button>
+</form>
+{% else %}
+<p>MANGLER orderid, budget og/eller spent.</p>
+{% if orderid %}
+<p id="order-id">Order ID: {{ orderid }}</p>
+{% endif %}
+
+{% if budget %}
+<p id="budget">Budget: {{ budget }}</p>
+{% endif %}
+
+{% if spent %}
+<p id="spent">Spent: {{ spent }}</p>
+{% else %}
+<h1> MANGLER spent</h1>
+{% endif %}
+
+{% endif %}
